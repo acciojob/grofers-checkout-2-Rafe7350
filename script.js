@@ -1,4 +1,3 @@
-//your code here
 // get all elements with the data attribute "data-ns-test" set to "prices"
 const priceElements = document.querySelectorAll('[data-ns-test="prices"]');
 
@@ -9,20 +8,14 @@ priceElements.forEach((priceElement) => {
   totalPrice += parseFloat(priceElement.textContent);
 });
 
-// create a new row for the total price
-const totalRow = document.createElement('tr');
+// get the grand total cell
+const grandTotalCell = document.querySelector('[data-ns-test="grandTotal"]');
+const grandTotal = parseFloat(grandTotalCell.textContent);
 
-// create a new cell for the total price
-const totalCell = document.createElement('td');
+// check if the total price equals the grand total
+if (totalPrice === grandTotal) {
+  console.log("Total prices match the grand total.");
+} else {
+  console.log("Total prices do not match the grand total.");
+}
 
-// set the data attribute "data-ns-test" to "grandTotal" for the total cell
-totalCell.setAttribute('data-ns-test', 'grandTotal');
-
-// set the text content of the total cell to the total price
-totalCell.textContent = totalPrice.toFixed(2);
-
-// append the total cell to the total row
-totalRow.appendChild(totalCell);
-
-// append the total row to the table body
-document.querySelector('tbody').appendChild(totalRow);
